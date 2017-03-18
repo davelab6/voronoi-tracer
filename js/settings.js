@@ -1,9 +1,5 @@
 var settings = {
-    canvas: {
-        width: 0,
-        height: 0
-    },
-    interval: 5,
-    n: 500,
-    resolution: 50
+    scale: 0.6,
+    n: 250,
+    resolution: 80
 };

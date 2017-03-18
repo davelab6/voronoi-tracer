@@ -5,33 +5,160 @@ body {
     background: #ededed;
 }
 
-.mainsize {
-    width: 400px;
-    height: 400px;
+
+/* architecture */
+
+#canvas-original {
+    display: none;
+}
+
+#original-image {
+    opacity: 0;
+}
+
+#original-image.loaded {
+    width: 80px;
+    height: auto;
+    opacity: 1;
+}
+
+#canvas-sketch {
+    display: none;
+}
+
+
+#voroni {
     background: #fff;
+    margin: 20px;
     display: inline-block;
-    margin: 10px;
     vertical-align: top;
 }
 
+
+/* svg */
+
 circle {
-    fill: pink;
+    fill: none;
 }
 
 .cell-border {
     fill: none;
-    stroke: #ddd;
+
 }
 
 .filled.cell-border {
-    fill: rgba(0,0,0,0.7);
+    fill: #000;
     stroke: #000;
 }
 
-#original-image {
-    display: none;
+.show-info .cell-border{
+    stroke: #ddd;
 }
 
-#canvas-sketch {
+.show-info circle {
+    fill: pink;
+}
+
+.show-info .filled.cell-border {
+    fill: rgba(0,0,0,0.7);
+}
+
+
+
+/* tools */
+
+#tools {
+    position: absolute;
+    left: calc(50% - 200px);
+    top: 50px;
+    width: 400px;
+    background: #ddd;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    padding: 20px;
+    z-index: 1000;
+}
+
+#tools h2 {
+    margin-top: 0;
+}
+
+.tools-set {
+    border-bottom: 1px dotted #fff;
+    margin-bottom: 8px;
+    padding-bottom: 24px;
+}
+
+#tools h4 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+}
+
+.slider {
+    width: 100%;
+    position: relative;
+}
+
+button {
+    background: #e03a6c;
+    border: 0;
+    border-radius: 6px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    color: #fff;
+    padding: 12px 18px;
+    cursor: pointer;
+}
+
+#loading-info {
+    display: none;
+    font-size: 10px;
+}
+
+
+/* sliders */
+
+body .ui-widget.ui-widget-content {
+    border: 0;
+    border-radius: 0;
+    background: #fff;
+    height: 2px;
+    width: 100%;
+}
+
+body .ui-slider-handle {
+    border-radius: 50%;
+    background: #e03a6c!important;
+    border: 0!important;
+    width: 16px!important;
+    height: 16px!important;
+    outline: none!important;
+    cursor: pointer!important;
+    position: absolute;
+    top: -7px;
+}
+
+body .ui-slider-handle:hover {
+    background: #000!important;
+}
+
+body .ui-slider-horizontal .ui-slider-range-min {
+    background: #e03a6c;
+    border-radius: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+
+
+
+
+/* status */
+
+#status {
+    padding: 20px;
+    font-size: 10px;
+}
+
+#again-button {
     display: none;
 }

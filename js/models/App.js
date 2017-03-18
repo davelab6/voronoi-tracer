@@ -1,33 +1,54 @@
 function App(container, settings) {
     this.container = container;
     this.settings = settings;
-    this.timer = null;
+    this.status = {
+        time: {
+            start: null,
+            end: null
+        }
+    };
     this.points = [];
 }
 
 App.prototype.init = function() {
-    this.measure();
+    this.toggleInfo($('#show-info')[0]);
     this.initModels();
     this.svg.create();
-    this.atOnce();
+    this.drawCells();
 };
 
 App.prototype.initModels = function() {
-    this.svg = new Svg(this);
     this.originalImage = new OriginalImage(this);
+    this.svg = new Svg(this);
     this.sketchCanvas = new SketchCanvas(this);
 };
 
-App.prototype.measure = function() {
-    this.settings.canvas.width = this.container.outerWidth();
-    this.settings.canvas.height = this.container.outerHeight();
+App.prototype.again = function() {
+    $('#tools').show();
+    $('#again-button').hide();
+    $('#start-button').show();
+    $('#loading-info').hide();
 };
 
-App.prototype.atOnce = function() {
+App.prototype.fillCells = function() {
+    var self = this;
+
+    $('#again-button').hide();
+    $('#start-button').hide();
+    $('#loading-info').show();
+    this.status.time.start = new Date().getTime();
+    setTimeout(function(){
+        self.svg.fillCells();
+    }, 100);
+};
+
+
+App.prototype.drawCells = function() {
     var i = 0;
+    this.points = [];
     while (i < this.settings.n) {
-        var x = Math.round(Math.random() * this.settings.canvas.width),
-            y = Math.round(Math.random() * this.settings.canvas.height);
+        var x = Math.round(Math.random() * this.originalImage.settings.width),
+            y = Math.round(Math.random() * this.originalImage.settings.height);
         if (this.originalImage.isNear(x, y)) {
             this.generatePoint(x, y);
             i++;
@@ -35,25 +56,7 @@ App.prototype.atOnce = function() {
 
     }
     this.svg.redraw();
-};
 
-
-App.prototype.start = function() {
-    var self = this;
-    this.stop();
-    this.timer = setInterval(function(){
-        self.generatePoint();
-        self.svg.redraw();
-        if (self.points.length > self.settings.n) {
-            self.stop();
-        }
-    }, this.settings.interval)
-};
-
-App.prototype.stop = function() {
-    if (this.timer) {
-        clearInterval(this.timer);
-    }
 };
 
 
@@ -61,5 +64,29 @@ App.prototype.generatePoint = function(x, y) {
     var point = new Point(this, x, y);
     this.points.push(point);
 };
+
+App.prototype.finish = function() {
+    var time;
+    $('#tools').hide();
+    this.status.time.end = new Date().getTime();
+    time = ((this.status.time.end - this.status.time.start) / 1000).toFixed(1) + 's';
+    $('#status-text').html('Computed time: ' + time);
+    $('#again-button').show();
+};
+
+App.prototype.toggleInfo = function(element) {
+    if ($(element).is(':checked')) {
+        $('#voroni').addClass('show-info');
+    } else {
+        $('#voroni').removeClass('show-info');
+    }
+};
+
+App.prototype.updateSize = function() {
+    this.originalImage.updateSize();
+    this.sketchCanvas.updateSize();
+    this.svg.updateSize();
+};
+
 
 

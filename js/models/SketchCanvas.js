@@ -8,10 +8,13 @@ function SketchCanvas(app) {
 SketchCanvas.prototype.init = function() {
     this.element = document.getElementById('canvas-sketch');
     this.ctx = this.element.getContext('2d');
-    this.element.setAttribute ('width', this.app.settings.canvas.width);
-    this.element.setAttribute ('height', this.app.settings.canvas.height);
+    this.updateSize();
 };
 
+SketchCanvas.prototype.updateSize = function() {
+    this.element.setAttribute ('width', this.app.originalImage.settings.width);
+    this.element.setAttribute ('height', this.app.originalImage.settings.height);
+};
 
 SketchCanvas.prototype.overlaps = function(cell) {
     var pixels;
@@ -22,7 +25,7 @@ SketchCanvas.prototype.overlaps = function(cell) {
 };
 
 SketchCanvas.prototype.clear = function() {
-    this.ctx.clearRect(0, 0, this.app.settings.canvas.width, this.app.settings.canvas.height);
+    this.ctx.clearRect(0, 0, this.app.originalImage.settings.width, this.app.originalImage.settings.height);
 };
 
 SketchCanvas.prototype.drawCell = function(cell) {
@@ -40,10 +43,10 @@ SketchCanvas.prototype.drawCell = function(cell) {
 
 SketchCanvas.prototype.getPixels = function() {
     var pixels = [];
-    for (var y = 0; y < this.app.settings.canvas.height; y++) {
-        for (var x = 0; x < this.app.settings.canvas.width; x++) {
+    for (var y = 0; y < this.app.originalImage.settings.height; y++) {
+        for (var x = 0; x < this.app.originalImage.settings.width; x++) {
             if (this.ctx.isPointInPath(x,y)) {
-                var c = y * this.app.settings.canvas.width + x;
+                var c = y * this.app.originalImage.settings.width + x;
                 pixels.push(c);
             }
         }
@@ -53,14 +56,23 @@ SketchCanvas.prototype.getPixels = function() {
 
 SketchCanvas.prototype.getPixelBalance = function(pixels) {
     var l = pixels.length,
-        hits = 0;
+        hits = 0,
+        fails = 0;
     for (var i = 0; i < l; i++ ){
         var pixel = pixels[i];
         if (this.app.originalImage.isDarkPixel(pixel)) {
             hits++;
+        } else {
+            fails++;
+        }
+        if (hits > (l/2)) {
+            return true;
+        }
+        if (fails > (l/2)) {
+            return false;
         }
     }
-    return hits > (l / 2);
+    return false;
 };
 
 

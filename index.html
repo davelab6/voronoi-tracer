@@ -4,11 +4,11 @@
         <title>Voronoi Tracer</title>
 
         <!--<script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js"></script>-->
-        <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Dosis:200,400,700,800'>
         <link rel="stylesheet" type="text/css" href="style.css">
 
-        <script src="../../_assets/jquery.3.2.0/jquery.js"></script>
-        <script src="../../_assets/d3.4.7.3/d3-old.js"></script>
+        <script src="../../../_assets/jquery.3.2.0/jquery.js"></script>
+        <script src="../../../_assets/d3.4.7.3/d3-old.js"></script>
+        <script src="../../../_assets/jquery-ui/jquery-ui.js"></script>
 
         <script src="js/settings.js"></script>
         <script src="js/main.js"></script>
@@ -21,8 +21,57 @@
 
     <body>
         <div id="voroni" class="mainsize"></div>
+
         <canvas id="canvas-sketch" class="mainsize"></canvas>
         <canvas id="canvas-original" class="mainsize"></canvas>
-        <img id="original-image" src="img/a-01.jpg">
+
+        <div id="tools">
+            <h2>Voronoi Tracer</h2>
+
+            <div class="tools-set">
+                <h4>
+                    Your image
+                </h4>
+                <img id="original-image" src="img/a-01.jpg">
+            </div>
+
+            <div class="tools-set">
+                <h4>
+                    Scale
+                </h4>
+                <div id="scale-slider" class="slider">
+                    <div class="ui-slider-handle"></div>
+                </div>
+            </div>
+
+            <div class="tools-set">
+                <h4>
+                    Number of cells
+                </h4>
+                <div id="cell-slider" class="slider">
+                    <div class="ui-slider-handle"></div>
+                </div>
+            </div>
+
+            <div class="tools-set">
+                <h4>
+                    Follow image contours
+                </h4>
+                <div id="resolution-slider" class="slider">
+                    <div class="ui-slider-handle"></div>
+                </div>
+            </div>
+
+            <button id="start-button" onclick="app.fillCells()">Start</button>
+            <div id="loading-info">Computing...</div>
+        </div>
+
+        <div id="status">
+            <div id="status-text"></div>
+            <div id="status-tools">
+                <input type="checkbox" id="show-info" checked="checked" onchange="app.toggleInfo(this)"> Show computing info
+            </div>
+            <button id="again-button" onclick="app.again()">Again</button>
+        </div>
     </body>
 </html>
