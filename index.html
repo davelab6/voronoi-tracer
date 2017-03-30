@@ -12,11 +12,13 @@
     <link rel="stylesheet" type="text/css" href="inn/innouveau.css">
     <link rel="stylesheet" type="text/css" href="style.css">
 
-    <script src="../../../_assets/jquery.3.2.0/jquery.js"></script>
-    <script src="../../../_assets/d3.4.7.3/d3-old.js"></script>
-    <script src="../../../_assets/jquery-ui/jquery-ui.js"></script>
+    <script src="js/assets/jquery.js"></script>
+    <script src="js/assets/d3.js"></script>
+    <script src="js/assets/jquery-ui.js"></script>
+    <script src="js/assets/dojo.js"></script>
 
     <script src="js/settings.js"></script>
+    <script src="js/image-loader.js"></script>
     <script src="js/main.js"></script>
     <script src="js/models/App.js"></script>
     <script src="js/models/Point.js"></script>
@@ -44,6 +46,14 @@
             <h4>
                 Your image
             </h4>
+            <h5>
+                Drop the image in the drop target. Or do nothing and use
+                the placeholder image
+            </h5>
+            <div id="drop-target">
+                Drop image file here.<br>
+                <i>(Firefox and Chrome only)</i>
+            </div>
             <img id="original-image" src="img/a-01.jpg">
         </div>
 
@@ -86,7 +96,10 @@
         <div id="status-tools">
             <input type="checkbox" id="show-info" checked="checked" onchange="app.toggleInfo(this)"> Show computing info
         </div>
-        <button id="again-button" onclick="app.again()">Again</button>
+        <div calss="inn-button" id="again-button" onclick="app.again()">
+            <span class="inn-button-icon fa fa-repeat"></span>
+            Again
+        </div>
     </div>
 </div>
 

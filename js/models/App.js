@@ -17,6 +17,26 @@ App.prototype.init = function() {
     this.drawCells();
 };
 
+App.prototype.loadImage = function (src) {
+    var self = this;
+    image.onload = function() {
+        if (image.height > settings.image) {
+            image.width = image.width * settings.image / image.height;
+            image.height = settings.image.height;
+        }
+        if(image.complete) {
+            $('#original-image').attr('src', src);
+            self.drawCells();
+        }
+        else {
+            $('#original-image').attr('src', src);
+            self.drawCells();
+        }
+    };
+    image.src = src;
+};
+
+
 App.prototype.initModels = function() {
     this.originalImage = new OriginalImage(this);
     this.svg = new Svg(this);

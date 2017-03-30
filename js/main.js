@@ -1,3 +1,5 @@
+var image = new Image();
+
 $(window).ready(function(){
     initSliders();
     loadImage();
@@ -20,7 +22,7 @@ function initSliders() {
         orientation: "horizontal",
         range: "min",
         min: 2,
-        max: 1500,
+        max: 3000,
         value: settings.n,
         slide: function(event, ui){
             app.settings.n = ui.value;
