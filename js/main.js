@@ -19,7 +19,7 @@ function initSliders() {
     $("#cell-slider").slider({
         orientation: "horizontal",
         range: "min",
-        min: 20,
+        min: 2,
         max: 1500,
         value: settings.n,
         slide: function(event, ui){

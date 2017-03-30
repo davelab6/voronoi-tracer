@@ -91,6 +91,7 @@ circle {
 #tools h4 {
     margin: 0 0 12px 0;
     font-size: 14px;
+    font-family: 'Tinos';
 }
 
 .slider {
@@ -126,7 +127,7 @@ body .ui-widget.ui-widget-content {
 
 body .ui-slider-handle {
     border-radius: 50%;
-    background: #e03a6c!important;
+    background: #ff9d00!important;
     border: 0!important;
     width: 16px!important;
     height: 16px!important;
@@ -141,7 +142,7 @@ body .ui-slider-handle:hover {
 }
 
 body .ui-slider-horizontal .ui-slider-range-min {
-    background: #e03a6c;
+    background: #ff9d00;
     border-radius: 0;
     position: absolute;
     left: 0;
