@@ -1,77 +1,92 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <title>Voronoi Tracer</title>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Innouveau - Voronoi Tracer</title>
 
-        <!--<script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js"></script>-->
-        <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Dosis:200,400,700,800' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css?family=Tinos" rel="stylesheet">
 
-        <script src="../../../_assets/jquery.3.2.0/jquery.js"></script>
-        <script src="../../../_assets/d3.4.7.3/d3-old.js"></script>
-        <script src="../../../_assets/jquery-ui/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="inn/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="inn/innouveau.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 
-        <script src="js/settings.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/models/App.js"></script>
-        <script src="js/models/Point.js"></script>
-        <script src="js/models/Svg.js"></script>
-        <script src="js/models/OriginalImage.js"></script>
-        <script src="js/models/SketchCanvas.js"></script>
-    </head>
+    <script src="../../../_assets/jquery.3.2.0/jquery.js"></script>
+    <script src="../../../_assets/d3.4.7.3/d3-old.js"></script>
+    <script src="../../../_assets/jquery-ui/jquery-ui.js"></script>
 
-    <body>
-        <div id="voroni" class="mainsize"></div>
+    <script src="js/settings.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/models/App.js"></script>
+    <script src="js/models/Point.js"></script>
+    <script src="js/models/Svg.js"></script>
+    <script src="js/models/OriginalImage.js"></script>
+    <script src="js/models/SketchCanvas.js"></script>
+</head>
+<body>
+<div id="inn-logo">
+    <a href="http://innouveau.com" target="_blank">
+        <img src="inn/innouveau-logo-2017-transparent.png">
+    </a>
+    <div id="inn-header">
+        <h1>Voronoi Tracer</h1>
+    </div>
+</div>
+<div id="inn-content">
+    <div id="voroni" class="mainsize"></div>
 
-        <canvas id="canvas-sketch" class="mainsize"></canvas>
-        <canvas id="canvas-original" class="mainsize"></canvas>
+    <canvas id="canvas-sketch" class="mainsize"></canvas>
+    <canvas id="canvas-original" class="mainsize"></canvas>
 
-        <div id="tools">
-            <h2>Voronoi Tracer</h2>
-
-            <div class="tools-set">
-                <h4>
-                    Your image
-                </h4>
-                <img id="original-image" src="img/a-01.jpg">
-            </div>
-
-            <div class="tools-set">
-                <h4>
-                    Scale
-                </h4>
-                <div id="scale-slider" class="slider">
-                    <div class="ui-slider-handle"></div>
-                </div>
-            </div>
-
-            <div class="tools-set">
-                <h4>
-                    Number of cells
-                </h4>
-                <div id="cell-slider" class="slider">
-                    <div class="ui-slider-handle"></div>
-                </div>
-            </div>
-
-            <div class="tools-set">
-                <h4>
-                    Follow image contours
-                </h4>
-                <div id="resolution-slider" class="slider">
-                    <div class="ui-slider-handle"></div>
-                </div>
-            </div>
-
-            <button id="start-button" onclick="app.fillCells()">Start</button>
-            <div id="loading-info">Computing...</div>
+    <div id="tools">
+        <div class="tools-set">
+            <h4>
+                Your image
+            </h4>
+            <img id="original-image" src="img/a-01.jpg">
         </div>
 
-        <div id="status">
-            <div id="status-text"></div>
-            <div id="status-tools">
-                <input type="checkbox" id="show-info" checked="checked" onchange="app.toggleInfo(this)"> Show computing info
+        <div class="tools-set">
+            <h4>
+                Scale
+            </h4>
+            <div id="scale-slider" class="slider">
+                <div class="ui-slider-handle"></div>
             </div>
-            <button id="again-button" onclick="app.again()">Again</button>
         </div>
-    </body>
+
+        <div class="tools-set">
+            <h4>
+                Number of cells
+            </h4>
+            <div id="cell-slider" class="slider">
+                <div class="ui-slider-handle"></div>
+            </div>
+        </div>
+
+        <div class="tools-set">
+            <h4>
+                Follow image contours
+            </h4>
+            <div id="resolution-slider" class="slider">
+                <div class="ui-slider-handle"></div>
+            </div>
+        </div>
+
+        <button id="start-button" onclick="app.fillCells()">Start</button>
+        <div id="loading-info">Computing...</div>
+    </div>
+
+    <div id="status">
+        <div id="status-text"></div>
+        <div id="status-tools">
+            <input type="checkbox" id="show-info" checked="checked" onchange="app.toggleInfo(this)"> Show computing info
+        </div>
+        <button id="again-button" onclick="app.again()">Again</button>
+    </div>
+</div>
+
+</body>
 </html>
+
